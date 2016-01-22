@@ -1,0 +1,17 @@
+﻿--------------------------------------------------------------------------------
+-- DBMS_SCHEDULER Job Definition
+--------------------------------------------------------------------------------
+begin
+	dbms_scheduler.create_job (
+		job_name => '[JOB_NAME]',
+		job_type => '[JOB_TYPE]',
+		job_action => '[JOB_ACTION]',
+		start_date => [START_DATE],
+		repeat_interval => [REPEAT_INTERVAL],
+		end_date => [END_DATE],
+		job_class => '[JOB_CLASS]',
+		enabled => [ENABLED],
+		auto_drop => [AUTO_DROP],
+		comments => [COMMENTS]);
+end;
+/

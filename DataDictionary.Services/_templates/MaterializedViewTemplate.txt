@@ -1,0 +1,6 @@
+﻿--------------------------------------------------------------------------------
+-- Materialized View
+--------------------------------------------------------------------------------
+create materialized view [MVIEW_NAME] ([COLUMNS_LIST])
+[BUILD_MODE][REFRESH_METHOD][REFRESH_MODE][QUERY_REWRITE]as
+[QUERY];

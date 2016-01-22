@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDictionaryTool", "DataDictionaryTool\DataDictionaryTool.csproj", "{80594835-16B0-4455-A778-ADC015B559E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDictionary.Services", "DataDictionary.Services\DataDictionary.Services.csproj", "{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel.DataDictionary", "EFModel.DataDictionary\EFModel.DataDictionary.csproj", "{990CC38F-80A3-4967-9E01-78838FF6692B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel.DataDictionary.UnitTests", "EFModel.DataDictionary.UnitTests\EFModel.DataDictionary.UnitTests.csproj", "{ABC1A226-50ED-4B69-96B5-948E39BE69A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDictionary.Services.UnitTests", "DataDictionary.Services.UnitTests\DataDictionary.Services.UnitTests.csproj", "{4D9A402E-FE4D-436C-B587-3AA6C398DB13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2B99D6A-737C-455C-A551-F26464F8AF30}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://saeegxx4404:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DataDictionaryTool\\DataDictionaryTool.csproj
+		SccProjectName1 = DataDictionaryTool
+		SccLocalPath1 = DataDictionaryTool
+		SccProjectUniqueName2 = DataDictionary.Services\\DataDictionary.Services.csproj
+		SccProjectName2 = DataDictionary.Services
+		SccLocalPath2 = DataDictionary.Services
+		SccProjectUniqueName3 = EFModel.DataDictionary\\EFModel.DataDictionary.csproj
+		SccProjectName3 = EFModel.DataDictionary
+		SccLocalPath3 = EFModel.DataDictionary
+		SccProjectUniqueName4 = EFModel.DataDictionary.UnitTests\\EFModel.DataDictionary.UnitTests.csproj
+		SccProjectName4 = EFModel.DataDictionary.UnitTests
+		SccLocalPath4 = EFModel.DataDictionary.UnitTests
+		SccProjectUniqueName5 = DataDictionary.Services.UnitTests\\DataDictionary.Services.UnitTests.csproj
+		SccProjectName5 = DataDictionary.Services.UnitTests
+		SccLocalPath5 = DataDictionary.Services.UnitTests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80594835-16B0-4455-A778-ADC015B559E0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Debug|Any CPU.Build.0 = Debug|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Debug|x86.ActiveCfg = Debug|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Debug|x86.Build.0 = Debug|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Release|Any CPU.ActiveCfg = Release|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Release|Any CPU.Build.0 = Release|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Release|x86.ActiveCfg = Release|x86
+		{80594835-16B0-4455-A778-ADC015B559E0}.Release|x86.Build.0 = Release|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Debug|Any CPU.Build.0 = Debug|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Debug|x86.ActiveCfg = Debug|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Debug|x86.Build.0 = Debug|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Release|Any CPU.ActiveCfg = Release|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Release|Any CPU.Build.0 = Release|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Release|x86.ActiveCfg = Release|x86
+		{7B92CFC5-00A4-43CB-AB95-AAA7B9311F06}.Release|x86.Build.0 = Release|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|Any CPU.Build.0 = Debug|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x86.ActiveCfg = Debug|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x86.Build.0 = Debug|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|Any CPU.ActiveCfg = Release|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|Any CPU.Build.0 = Release|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x86.ActiveCfg = Release|x86
+		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x86.Build.0 = Release|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Debug|Any CPU.Build.0 = Debug|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Debug|x86.ActiveCfg = Debug|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Debug|x86.Build.0 = Debug|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Release|Any CPU.ActiveCfg = Release|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Release|Any CPU.Build.0 = Release|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Release|x86.ActiveCfg = Release|x86
+		{ABC1A226-50ED-4B69-96B5-948E39BE69A3}.Release|x86.Build.0 = Release|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Debug|Any CPU.Build.0 = Debug|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Debug|x86.ActiveCfg = Debug|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Debug|x86.Build.0 = Debug|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Release|Any CPU.ActiveCfg = Release|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Release|Any CPU.Build.0 = Release|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Release|x86.ActiveCfg = Release|x86
+		{4D9A402E-FE4D-436C-B587-3AA6C398DB13}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

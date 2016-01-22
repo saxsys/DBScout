@@ -1,0 +1,4 @@
+﻿alter table [TABLENAME]
+add 
+	constraint [CONSTRAINTNAME] foreign key ([CONSTRAINTCOLUMNS]) 
+		references [REFTABLENAME] ([REFCONSTRAINTCOLUMNS])[CONSTRAINTSTATE];

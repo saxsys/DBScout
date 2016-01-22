@@ -1,0 +1,8 @@
+﻿--------------------------------------------------------------------------------
+-- Table
+--------------------------------------------------------------------------------
+create table [OBJECTNAME]
+(
+[TABLECOLUMNDEFINITION][CONSTRAINTDEFINITION]
+)
+tablespace [TABLESPACE_NAME];
