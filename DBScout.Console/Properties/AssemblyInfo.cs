@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataDictionary.Services.UnitTests")]
+[assembly: AssemblyTitle("DBScout.Console")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DataDictionary.Services.UnitTests")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("DBScout.Console")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("64571324-350a-45f3-bc4b-8c678d54a81a")]
+[assembly: Guid("e967e0c3-f84f-4083-a042-47b7642e2d6f")]
 
 // Version information for an assembly consists of the following four values:
 //

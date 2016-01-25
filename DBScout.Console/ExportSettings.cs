@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace DataDictionaryTool
+namespace DBScout.Console
 {
     public class ExportSettings
     {

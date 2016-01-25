@@ -1,7 +1,7 @@
 ﻿using DataDictionary.Services.Controller;
 using System;
 
-namespace DataDictionaryTool
+namespace DBScout.Console
 {
     class Program
     {

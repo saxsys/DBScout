@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Text;
 
-namespace DataDictionaryTool
+namespace DBScout.Console
 {
     public class DatabaseSettings
     {
