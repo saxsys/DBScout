@@ -1,4 +1,5 @@
-﻿using DataDictionary.Services.Controller;
+﻿using DBScout.Connectors;
+using DBScout.Controller;
 using System;
 
 namespace DBScout.Console
@@ -11,18 +12,28 @@ namespace DBScout.Console
             {
                 var dbSettings = new DatabaseSettings(args);
                 var exportSettings = new ExportSettings(args);
+                var connectorDefinitions = new ConnectorSettings(args);
 
-                var controller = new DataDictionaryController(dbSettings.GetOracleConnectionString())
+                var dbConnector = DatabaseConnectorFactory.CreateDatabaseConnector(connectorDefinitions.DbConnectorClassName);
+                if (null == dbConnector)
                 {
-                    RootPath = exportSettings.RootPath,
-                    SchemaName = exportSettings.SchemaName
-                };
+                    throw new Exception(string.Format("Couldn't create instance of \"{0}\"",connectorDefinitions.DbConnectorClassName));
+                }
+                dbConnector.Init(dbSettings.GetInitializationParameters());
 
-                controller.CreateSqlFilesFromDatabaseModel();
+                var dbInfoProcessor = DbInfoProcessorFactory.CreateDbInfoProcessor(connectorDefinitions.DbInfoProcessorClassName);
+                if (null == dbInfoProcessor)
+                {
+                    throw new Exception(string.Format("Couldn't create instance of \"{0}\"", connectorDefinitions.DbInfoProcessorClassName));
+                }
+
+                var controller = new MainController();
+                var dbInfos = controller.AcquireDatabaseSchemaInformation(dbConnector);
+                controller.ProcessDatabaseSchema(dbInfos,dbInfoProcessor);
             }
             catch (Exception e)
             {
-                Console.Error.WriteLine(e.Message);
+                System.Console.Error.WriteLine(e.Message);
             }
         }
     }

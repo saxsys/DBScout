@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Text;
 
@@ -65,6 +66,13 @@ namespace DBScout.Console
             connectionStringBuilder.Append(";");
             
             return connectionStringBuilder.ToString();
+        }
+
+        public NameValueCollection GetInitializationParameters()
+        {
+            var parameters = new NameValueCollection();
+            parameters.Add("ConnectionString",GetOracleConnectionString());
+            return parameters;
         }
     }
 }

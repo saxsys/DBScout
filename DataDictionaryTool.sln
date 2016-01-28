@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel.DataDictionary", "EFModel.DataDictionary\EFModel.DataDictionary.csproj", "{990CC38F-80A3-4967-9E01-78838FF6692B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2B99D6A-737C-455C-A551-F26464F8AF30}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -18,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBScout.Console", "DBScout.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBScout.Framework", "DBScout.Framework\DBScout.Framework.csproj", "{D14D2B76-F24D-4D16-8502-775274E62A49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OracleDbConnector", "OracleDbConnector\OracleDbConnector.csproj", "{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBScout.OracleConnector", "DBScout.OracleConnector\DBScout.OracleConnector.csproj", "{6D02037E-5132-4332-ADB6-276C09E5C42A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,14 +26,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x64.ActiveCfg = Debug|x64
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x64.Build.0 = Debug|x64
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x86.ActiveCfg = Debug|x86
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Debug|x86.Build.0 = Debug|x86
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x64.ActiveCfg = Release|x64
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x64.Build.0 = Release|x64
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x86.ActiveCfg = Release|x86
-		{990CC38F-80A3-4967-9E01-78838FF6692B}.Release|x86.Build.0 = Release|x86
 		{7F438046-FB76-41AD-B02C-A7F3393CA604}.Debug|x64.ActiveCfg = Debug|x64
 		{7F438046-FB76-41AD-B02C-A7F3393CA604}.Debug|x64.Build.0 = Debug|x64
 		{7F438046-FB76-41AD-B02C-A7F3393CA604}.Debug|x86.ActiveCfg = Debug|x86
@@ -60,14 +50,14 @@ Global
 		{D14D2B76-F24D-4D16-8502-775274E62A49}.Release|x64.Build.0 = Release|x64
 		{D14D2B76-F24D-4D16-8502-775274E62A49}.Release|x86.ActiveCfg = Release|x86
 		{D14D2B76-F24D-4D16-8502-775274E62A49}.Release|x86.Build.0 = Release|x86
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Debug|x64.ActiveCfg = Debug|x64
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Debug|x64.Build.0 = Debug|x64
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Debug|x86.ActiveCfg = Debug|x86
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Debug|x86.Build.0 = Debug|x86
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Release|x64.ActiveCfg = Release|x64
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Release|x64.Build.0 = Release|x64
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Release|x86.ActiveCfg = Release|x86
-		{46A39726-EE9D-485D-A20E-8EF0A6ECEB9D}.Release|x86.Build.0 = Release|x86
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Debug|x64.ActiveCfg = Debug|x64
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Debug|x64.Build.0 = Debug|x64
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Debug|x86.ActiveCfg = Debug|x86
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Debug|x86.Build.0 = Debug|x86
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Release|x64.ActiveCfg = Release|x64
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Release|x64.Build.0 = Release|x64
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Release|x86.ActiveCfg = Release|x86
+		{6D02037E-5132-4332-ADB6-276C09E5C42A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

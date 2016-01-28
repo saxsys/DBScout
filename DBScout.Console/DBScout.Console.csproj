@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectorSettings.cs" />
     <Compile Include="DatabaseSettings.cs" />
     <Compile Include="ExportSettings.cs" />
     <Compile Include="Program.cs" />
@@ -74,6 +75,12 @@
     <Content Include="readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBScout.Framework\DBScout.Framework.csproj">
+      <Project>{d14d2b76-f24d-4d16-8502-775274e62a49}</Project>
+      <Name>DBScout.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

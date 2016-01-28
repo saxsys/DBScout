@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OracleDbConnector")]
+[assembly: AssemblyTitle("DBScout.OracleConnector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OracleDbConnector")]
+[assembly: AssemblyProduct("DBScout.OracleConnector")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("09da6412-d375-4222-9d1c-315975339cd9")]
+[assembly: Guid("3e82f5de-7fe0-4ae3-a766-ca3ab5c7488c")]
 
 // Version information for an assembly consists of the following four values:
 //
