@@ -1,0 +1,1 @@
+﻿comment on [OBJECTTYPE] [OBJECTNAME] is '[COMMENT]';

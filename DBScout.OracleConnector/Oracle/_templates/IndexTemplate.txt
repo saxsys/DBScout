@@ -1,0 +1,3 @@
+﻿create[BITMAP_UNIQUE] index [INDEX_NAME]
+	on [TABLE_NAME] ([COLUMN_LIST])
+	tablespace [TABLESPACE_NAME];

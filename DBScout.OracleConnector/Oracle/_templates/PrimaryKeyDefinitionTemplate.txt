@@ -1,0 +1,3 @@
+﻿constraint [CONSTRAINTNAME] primary key ([CONSTRAINTCOLUMNS])
+	using index
+	tablespace [TABLESPACE_NAME][CONSTRAINTSTATE]
