@@ -10,6 +10,7 @@ namespace DBScout.Console
         public string Sid { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Provider { get; set; }
 
         public DatabaseSettings(IEnumerable<string> cmdLineArgs)
         {
@@ -23,6 +24,7 @@ namespace DBScout.Console
             Sid = appSettingsReader.GetValue("database.sid", typeof(string)).ToString();
             Username = appSettingsReader.GetValue("database.username", typeof(string)).ToString();
             Password = appSettingsReader.GetValue("database.password", typeof(string)).ToString();
+            Provider = appSettingsReader.GetValue("database.provider", typeof(string)).ToString();
         }
 
         private void InitFromCommandLine(IEnumerable<string> cmdLineArgs)
@@ -48,6 +50,9 @@ namespace DBScout.Console
                         break;
                     case "password":
                         Password = paramValue;
+                        break;
+                    case "provider":
+                        Provider = paramValue;
                         break;
                 }
             }

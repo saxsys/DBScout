@@ -14,7 +14,7 @@ namespace DBScout.Console
                 var exportSettings = new ExportSettings(args);
                 var connectorDefinitions = new ConnectorSettings(args);
 
-                var dbConnector = DatabaseConnectorFactory.CreateDatabaseConnector(connectorDefinitions.DbConnectorClassName);
+                var dbConnector = DatabaseConnectorFactory.CreateDatabaseConnector(connectorDefinitions.DbConnectorClassName,dbSettings.Provider,dbSettings.Username,dbSettings.Password);
                 if (null == dbConnector)
                 {
                     throw new Exception(string.Format("Couldn't create instance of \"{0}\"",connectorDefinitions.DbConnectorClassName));
