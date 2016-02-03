@@ -9,7 +9,7 @@ namespace DBScout.DatabaseSettings.Views
     {
         public DbSettingsView()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
