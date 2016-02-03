@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.Common;
 using Prism.Commands;
@@ -15,7 +16,7 @@ namespace DBScout.DatabaseSettings.ViewModels
         string DbPassword { get; set; }
         string ExportSchema { get; set; }
         string ExportRootPath { get; set; }
-        StringDictionary DbProvider { get; set; }
-        string GetConnectionString();
+        ProviderEnum SelectedProvider { get; set; }
+        List<ComboBoxItemProvider> ProviderListEnum { get; set; }
     }
 }

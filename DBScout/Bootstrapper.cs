@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls.Primitives;
-using DBScout.DatabaseSettings;
 using DBScout.Views;
 using Microsoft.Practices.Unity;
 using Prism.Logging;
@@ -12,8 +11,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Unity;
 using DBScout.Contracts;
-using DBScout.StructurePreview;
-using DBScout.StructurePreview.Views;
+
 
 namespace DBScout
 {
