@@ -19,7 +19,7 @@ namespace DBScout.DatabaseSettings.ViewModels
         private ProviderEnum.Providers _providersEnum = ProviderEnum.Providers.Oracle;
 
 
-        public ProviderEnum.Providers ProvidersesEnum
+        public ProviderEnum.Providers ProvidersEnum
         {
             get { return _providersEnum; }
             set
