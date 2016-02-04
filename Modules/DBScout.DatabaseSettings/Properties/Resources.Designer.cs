@@ -59,5 +59,32 @@ namespace DBScout.DatabaseSettings.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DBScout settings.
+        /// </summary>
+        internal static string StrDBScout_Settings {
+            get {
+                return ResourceManager.GetString("StrDBScout_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS SqlServer.
+        /// </summary>
+        internal static string StrMS_SqlServer {
+            get {
+                return ResourceManager.GetString("StrMS_SqlServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oracle.
+        /// </summary>
+        internal static string StrOracle {
+            get {
+                return ResourceManager.GetString("StrOracle", resourceCulture);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using Prism.Regions;
 using DBScout.StructurePreview.Views;
 using Microsoft.Practices.Unity;
 
+
 namespace DBScout.StructurePreview
 {
     [Module(ModuleName = "StructurePreviewModule")]

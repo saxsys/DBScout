@@ -4,18 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:prism="http://prismlibrary.com/"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:viewModels="clr-namespace:DBScout.DatabaseSettings.ViewModels"
-             xmlns:contracts="clr-namespace:DBScout.Contracts;assembly=DBScout.Contracts"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModels:IDbSettingsDesignViewModel, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance viewModels:DbSettingsDesignViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <i:Interaction.Triggers>
-        <prism:InteractionRequestTrigger SourceObject="{Binding MyNotification}">
-            <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True" />
-        </prism:InteractionRequestTrigger>
-    </i:Interaction.Triggers>
     <Grid x:Name="MainGrid" Column="1" Background="Azure" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="247*" />
@@ -27,7 +20,7 @@
                 <RowDefinition Height="50*" />
             </Grid.RowDefinitions>
 
-            <Label x:Name="label" Content="Source database settings" HorizontalAlignment="Center"
+            <Label Content="Source database settings" HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Grid.Row="0" />
             <Grid Grid.Row="1">
@@ -43,44 +36,36 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Provider"></Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" />
+                <Label Grid.Row="0" Content="Database type"></Label>
+                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ProviderListEnum, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="ValueProviderString" SelectedValuePath="ValueProviderEnum"
+                          SelectedValue="{Binding SelectedProvider.ProvidersEnum}" HorizontalAlignment="Stretch" />
                 <Label Grid.Row="1" Grid.Column="0" Content="SID"></Label>
                 <TextBox Grid.Row="1" TextWrapping="Wrap"
                          Text="{Binding DbSid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1">
-                    <i:Interaction.Behaviors>
-                        <contracts:BlendTextFilterBehavior FilterText="j" />
-                    </i:Interaction.Behaviors>
+
                 </TextBox>
                 <Label Grid.Row="2" Grid.Column="0" Content="Username"></Label>
                 <TextBox Grid.Row="2" TextWrapping="Wrap"
                          Text="{Binding DbUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1">
-                    <i:Interaction.Behaviors>
-                        <contracts:BlendTextFilterBehavior FilterText="j" />
-                    </i:Interaction.Behaviors>
+
                 </TextBox>
                 <Label Grid.Row="3" Grid.Column="0" Content="Password"></Label>
                 <TextBox Grid.Row="3" TextWrapping="Wrap"
                          Text="{Binding DbPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1">
-                    <i:Interaction.Behaviors>
-                        <contracts:BlendTextFilterBehavior FilterText="j" />
-                    </i:Interaction.Behaviors>
+
                 </TextBox>
                 <Label Grid.Row="4" Grid.Column="0" Content="Export schema"></Label>
                 <TextBox Grid.Row="4" TextWrapping="Wrap"
                          Text="{Binding ExportSchema, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
                          Grid.Column="1">
-                    <i:Interaction.Behaviors>
-                        <contracts:BlendTextFilterBehavior FilterText="j" />
-                    </i:Interaction.Behaviors>
+
                 </TextBox>
                 <Label Grid.Row="5" Grid.Column="0" Content="Export root path"></Label>
                 <TextBox Grid.Row="5" TextWrapping="Wrap"
                          Text="{Binding ExportRootPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
                          Grid.Column="1">
-                    <i:Interaction.Behaviors>
-                        <contracts:BlendTextFilterBehavior FilterText="j" />
-                    </i:Interaction.Behaviors>
+
                 </TextBox>
             </Grid>
 
@@ -90,130 +75,5 @@
         </Button>
     </Grid>
 </UserControl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

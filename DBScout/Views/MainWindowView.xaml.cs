@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using DBScout.Contracts;
-using DBScout.DatabaseSettings.Views;
-using DBScout.StructurePreview.Views;
 using Microsoft.Practices.Unity;
 using Prism.Regions;
 

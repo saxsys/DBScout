@@ -114,4 +114,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="StrOracle" xml:space="preserve">
+    <value>Oracle</value>
+  </data>
+  <data name="StrMS_SqlServer" xml:space="preserve">
+    <value>MS SqlServer</value>
+  </data>
+  <data name="StrDBScout_Settings" xml:space="preserve">
+    <value>DBScout settings</value>
+  </data>
 </root>

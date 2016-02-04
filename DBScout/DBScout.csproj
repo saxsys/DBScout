@@ -183,15 +183,15 @@
       <Project>{42685d9b-f59e-4bf0-8be7-7c814870f85a}</Project>
       <Name>DBScout.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DBScout.DatabaseSettings\DBScout.DatabaseSettings.csproj">
-      <Project>{AB8B448C-DD74-4D60-A041-3E5D03A32180}</Project>
-      <Name>DBScout.DatabaseSettings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DBScout.Framework\DBScout.Framework.csproj">
       <Project>{d14d2b76-f24d-4d16-8502-775274e62a49}</Project>
       <Name>DBScout.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DBScout.StructurePreview\DBScout.StructurePreview.csproj">
+    <ProjectReference Include="..\Modules\DBScout.DatabaseSettings\DBScout.DatabaseSettings.csproj">
+      <Project>{ab8b448c-dd74-4d60-a041-3e5d03a32180}</Project>
+      <Name>DBScout.DatabaseSettings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\DBScout.StructurePreview\DBScout.StructurePreview.csproj">
       <Project>{bf08bc52-2d42-4c10-b648-3959d77082b0}</Project>
       <Name>DBScout.StructurePreview</Name>
     </ProjectReference>
