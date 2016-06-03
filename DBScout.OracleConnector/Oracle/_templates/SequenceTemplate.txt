@@ -1,4 +1,0 @@
-﻿--------------------------------------------------------------------------------
--- Sequence
---------------------------------------------------------------------------------
-create sequence [SEQUENCE_NAME][START_WITH][INCREMENT_BY][MIN_VALUE][MAX_VALUE][CYCLE_FLAG][ORDER_FLAG];
