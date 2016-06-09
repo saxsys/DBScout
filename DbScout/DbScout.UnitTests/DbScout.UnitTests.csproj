@@ -54,7 +54,8 @@
   <ItemGroup>
     <Compile Include="Console\ConfiguratorUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Console\GenerateSqlFilesFromOracleDataDictionaryCommandUnitTests.cs" />
+    <Compile Include="Commands\GenerateSqlFilesFromOracleDataDictionaryCommandUnitTests.cs" />
+    <Compile Include="OracleConnectionStringProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DbScout.Commands\DbScout.Commands.csproj">
