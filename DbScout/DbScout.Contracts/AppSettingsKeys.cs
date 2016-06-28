@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbScout.Console
+namespace DbScout.Contracts
 {
-    class Constants
+    public class AppSettingsKeys
     {
-        internal const string DefaultCommandKey = "DefaultCommand";
+        public const string ConnectionString = "ConnectionString";
     }
 }

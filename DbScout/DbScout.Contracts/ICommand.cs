@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace DbScout.Contracts
+﻿namespace DbScout.Contracts
 {
+    /// <summary>
+    /// Interface definition for command implementations.
+    /// </summary>
     public interface ICommand
     {
-        void Configure(IDictionary<string, string> cfgDictionary);
-
+        /// <summary>
+        /// Command execution method.
+        /// </summary>
         void Execute();
     }
 }

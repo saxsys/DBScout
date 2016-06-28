@@ -52,10 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Console\ConfiguratorUnitTests.cs" />
+    <Compile Include="Services\CommandFactoryTests.cs" />
+    <Compile Include="Services\ConfiguratorUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commands\GenerateSqlFilesFromOracleDataDictionaryCommandUnitTests.cs" />
-    <Compile Include="OracleConnectionStringProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DbScout.Commands\DbScout.Commands.csproj">
@@ -70,7 +69,12 @@
       <Project>{27ee2205-4798-48e2-ac70-ec7d46f07bd2}</Project>
       <Name>DbScout.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DbScout.Services\DbScout.Services.csproj">
+      <Project>{9063B575-9C74-426E-B81C-EA8F6CFA0C33}</Project>
+      <Name>DbScout.Services</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

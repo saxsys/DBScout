@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using DbScout.Contracts;
+﻿using DbScout.Contracts;
 
 namespace DbScout.Commands
 {
-    public class TestCommand : ICommand
+    public class TestCommand : ICommand,IConfigurable
     {
-        public void Configure(IDictionary<string, string> cfgDictionary)
+        public void Execute()
         {
         }
 
-        public void Execute()
+        public void Configure(IConfiguration cfg)
         {
         }
     }

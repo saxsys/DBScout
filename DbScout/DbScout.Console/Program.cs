@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Configuration;
-using System.Linq;
 using System.Reflection;
+using DbScout.Contracts;
+using DbScout.Services;
 using log4net;
 using log4net.Config;
 
@@ -14,24 +14,36 @@ namespace DbScout.Console
         /// </summary>
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        private const string CommandKey = "Command";
+
         public static void Main(string[] args)
         {
             try
             {
                 XmlConfigurator.Configure();
 
-                var commandInstance = Configurator.GetCommandInstance(args.Any() ? args : new [] { ConfigurationManager.AppSettings[Constants.DefaultCommandKey]});
+                var cfg = new CommandLineConfiguration { CmdLineArgs = args };
+                var commandInstance = new CommandFactory()
+                    .CreateCommand(cfg.GetMandatoryConfigValue(CommandKey));
 
-                Logger.InfoFormat("Executing command {0}...", commandInstance.GetType().Name);
+                (commandInstance as IConfigurable)?.Configure(cfg);
+
+                Logger.Info($"Executing command {commandInstance.GetType().Name}...");
 
                 commandInstance.Execute();
 
-                Logger.InfoFormat("Command {0} executed.",commandInstance.GetType().Name);
+                Logger.Info($"Command {commandInstance.GetType().Name} executed.");
             }
             catch (Exception e)
             {
-                Logger.ErrorFormat("Error executing application: {0}",e.Message);
-                Logger.ErrorFormat("Stack trace: {0}", e.StackTrace);
+                Logger.Error($"Error executing application: {e.Message}");
+                var innerException = e.InnerException;
+                while (null != innerException)
+                {
+                    Logger.Error(innerException.Message);
+                    innerException = innerException.InnerException;
+                }
+                Logger.Error($"Stack trace: {e.StackTrace}");
             }
         }
     }

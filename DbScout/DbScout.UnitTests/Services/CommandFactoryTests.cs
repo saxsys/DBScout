@@ -1,35 +1,35 @@
 ﻿using System;
 using DbScout.Commands;
-using DbScout.Console;
 using DbScout.Contracts;
+using DbScout.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DbScout.UnitTests.Console
+namespace DbScout.UnitTests.Services
 {
     [TestClass]
-    public class ConfiguratorUnitTests
+    public class CommandFactoryTests
     {
         [TestMethod]
-        [ExpectedException(typeof(Exception),AllowDerivedTypes = true)]
-        public void TestGetCommandInstanceThrowsExceptionWhenCalledWithoutConfiguration()
+        public void TestInstanceCreatedSuccess()
         {
-            Configurator.GetCommandInstance(null);
+            var sut = new CommandFactory();
+            Assert.IsNotNull(sut);
+            Assert.IsInstanceOfType(sut,typeof(ICommandFactory));
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
-        public void TestGetCommandInstanceThrowsExceptionForNotCommandType()
+        public void TestCreateCommandThrowsExceptionForNotCommandType()
         {
-            var assemblyQualifiedName = typeof(String).AssemblyQualifiedName;
-            Configurator.GetCommandInstance(new[] { assemblyQualifiedName });
+            var assemblyQualifiedName = typeof(string).AssemblyQualifiedName;
+            new CommandFactory().CreateCommand(assemblyQualifiedName);
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
         public void TestGetCommandInstanceThrowsExceptionForInvalidTypeName()
         {
-            var assemblyQualifiedName = "InnvalidTypeName";
-            Configurator.GetCommandInstance(new[] { assemblyQualifiedName });
+            new CommandFactory().CreateCommand("InnvalidTypeName");
         }
 
 
@@ -37,7 +37,7 @@ namespace DbScout.UnitTests.Console
         public void TestGetCommandInstanceSuccessForExistingTypeOfCommandInterface()
         {
             var assemblyQualifiedName = typeof(TestCommand).AssemblyQualifiedName;
-            var cmdInstance = Configurator.GetCommandInstance(new[] { assemblyQualifiedName });
+            var cmdInstance = new CommandFactory().CreateCommand(assemblyQualifiedName);
             Assert.IsNotNull(cmdInstance);
             Assert.IsInstanceOfType(cmdInstance, typeof(ICommand));
         }

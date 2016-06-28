@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbScout.UnitTests", "DbScou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbScout.Commands", "DbScout.Commands\DbScout.Commands.csproj", "{AFC8C9DC-CAA7-42B4-83E8-845DC5613845}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbScout.Services", "DbScout.Services\DbScout.Services.csproj", "{9063B575-9C74-426E-B81C-EA8F6CFA0C33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OracleConnector", "OracleConnector\OracleConnector.csproj", "{E7540675-6432-4715-A90B-958E4DCDA66B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{AFC8C9DC-CAA7-42B4-83E8-845DC5613845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFC8C9DC-CAA7-42B4-83E8-845DC5613845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFC8C9DC-CAA7-42B4-83E8-845DC5613845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9063B575-9C74-426E-B81C-EA8F6CFA0C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9063B575-9C74-426E-B81C-EA8F6CFA0C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9063B575-9C74-426E-B81C-EA8F6CFA0C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9063B575-9C74-426E-B81C-EA8F6CFA0C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7540675-6432-4715-A90B-958E4DCDA66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7540675-6432-4715-A90B-958E4DCDA66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7540675-6432-4715-A90B-958E4DCDA66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7540675-6432-4715-A90B-958E4DCDA66B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

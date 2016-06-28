@@ -48,19 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurator.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DbScout.Contracts\DbScout.Contracts.csproj">
       <Project>{27ee2205-4798-48e2-ac70-ec7d46f07bd2}</Project>
       <Name>DbScout.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbScout.Services\DbScout.Services.csproj">
+      <Project>{9063b575-9c74-426e-b81c-ea8f6cfa0c33}</Project>
+      <Name>DbScout.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
