@@ -10,18 +10,14 @@ namespace OracleConnector
 {
     public class OracleDatabaseReader : IDatabaseReader, IConfigurable
     {
-        private string _connectionString;
+        private IConfiguration _cfg;
 
-        public string ConnectionString
+        public void Configure(IConfiguration cfg)
         {
-            get
-            {
-                return string.IsNullOrEmpty(_connectionString)
-                    ? (_connectionString = ConfigurationManager.AppSettings[AppSettingsKeys.ConnectionString])
-                    : _connectionString;
-            }
-            set { _connectionString = value; }
+            _cfg = cfg;
         }
+
+        public string ConnectionString { get; set; }
 
         private DbConnection _dbConnection;
 
@@ -38,7 +34,7 @@ namespace OracleConnector
                 throw new Exception("Configuration instance is not assigned!");
             }
 
-            var rootObjectType = _cfg.GetMandatoryConfigValue("RootObject");
+            var rootObjectType = _cfg.GetMandatoryConfigValue(AppSettingsKeys.RootObject);
             if (string.IsNullOrEmpty(rootObjectType))
             {
                 throw new Exception("There is no root object type name specified. Cannot obtain database structure without root object!");
@@ -61,13 +57,25 @@ namespace OracleConnector
                 throw new Exception($"{objectTypeName}.DataDictionaryTables configuration parameter missed!");
             }
 
-            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(),
-                StringSplitOptions.RemoveEmptyEntries);
+            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
             foreach (var dataDictionaryTable in dataDictionaryTables)
             {
                 var criteria = _cfg.GetConfigValue($"{objectTypeName}.{dataDictionaryTable}.Criteria");
                 databaseObject.Properties.Add(dataDictionaryTable,GetRecord(dataDictionaryTable,criteria));
             }
+
+            var childObjectTypeNamesString = _cfg.GetConfigValue($"{objectTypeName}.ChildObjectTypes");
+            if (string.IsNullOrEmpty(childObjectTypeNamesString))
+            {
+                return databaseObject;
+            }
+
+            var childObjectTypeNames = childObjectTypeNamesString.Split(",;".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
+            foreach (var childObjectTypeName in childObjectTypeNames)
+            {
+                databaseObject.ChildObjects.Add(ReadDatabaseObject(childObjectTypeName, databaseObject));
+            }
+
             return databaseObject;
         }
 
@@ -97,11 +105,5 @@ namespace OracleConnector
             return retVal;
         }
 
-        private IConfiguration _cfg;
-
-        public void Configure(IConfiguration cfg)
-        {
-            _cfg = cfg;
-        }
     }
 }

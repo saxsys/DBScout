@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="OracleDatabaseReaderTests.cs" />
     <Compile Include="Services\CommandFactoryTests.cs" />
     <Compile Include="Services\ConfiguratorUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,7 +75,9 @@
       <Name>DbScout.Services</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
