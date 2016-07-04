@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\DbScout.Services\DbScout.Services.csproj">
       <Project>{9063B575-9C74-426E-B81C-EA8F6CFA0C33}</Project>
       <Name>DbScout.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OracleConnector\OracleConnector.csproj">
+      <Project>{E7540675-6432-4715-A90B-958E4DCDA66B}</Project>
+      <Name>OracleConnector</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

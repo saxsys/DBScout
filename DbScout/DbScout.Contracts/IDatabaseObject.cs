@@ -42,6 +42,6 @@ namespace DbScout.Contracts
         /// data dictionary tables (e.g. a table is defined in Oracle Data Dictionary in USER_TABLES, USER_TAB_COMMENTS, 
         /// ...). For each data dictionary table exists a single entry in this dictionary.
         /// </summary>
-        IDictionary<string, IDictionary<string,string>> Properties { get; set; }
+        IDictionary<string, IDictionary<string,object>> Properties { get; set; }
     }
 }

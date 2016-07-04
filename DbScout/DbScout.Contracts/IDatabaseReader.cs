@@ -14,11 +14,6 @@ namespace DbScout.Contracts
         /// database object hierarchy (usually the database representation).
         /// </summary>
         /// <returns></returns>
-        ICollection<IDatabaseObject> ReadDatabaseObject();
-
-        /// <summary>
-        /// Database comnnection instance
-        /// </summary>
-        DbConnection DbConnection { get; set; }
+        ICollection<IDatabaseObject> ReadDatabaseObjects();
     }
 }

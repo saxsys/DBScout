@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.Common;
+using System.Linq;
+using System.Text.RegularExpressions;
 using DbScout.Contracts;
 using Oracle.ManagedDataAccess.Client;
 
@@ -17,93 +17,174 @@ namespace OracleConnector
             _cfg = cfg;
         }
 
-        public string ConnectionString { get; set; }
-
-        private DbConnection _dbConnection;
-
-        public DbConnection DbConnection
+        public ICollection<IDatabaseObject> ReadDatabaseObjects()
         {
-            get { return _dbConnection ?? (_dbConnection = new OracleConnection(ConnectionString)); }
-            set { _dbConnection = value; }
+            var databaseObject = new DatabaseObject {Type = _cfg.GetMandatoryConfigValue("RootObject") };
+            LoadObject(databaseObject);
+
+            return new List<IDatabaseObject> { databaseObject };
         }
 
-        public ICollection<IDatabaseObject> ReadDatabaseObject()
+        private void LoadObject(IDatabaseObject dbObject)
         {
-            if (null == _cfg)
+            if (null == dbObject)
             {
-                throw new Exception("Configuration instance is not assigned!");
+                return;
             }
 
-            var rootObjectType = _cfg.GetMandatoryConfigValue(AppSettingsKeys.RootObject);
-            if (string.IsNullOrEmpty(rootObjectType))
-            {
-                throw new Exception("There is no root object type name specified. Cannot obtain database structure without root object!");
-            }
+            var objectType = dbObject.Type;
+            var dataDictionaryTablesString = _cfg.GetMandatoryConfigValue($"{objectType}.DataDictionaryTables");
+            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-            return new [] { ReadDatabaseObject(rootObjectType) };
-        }
-
-        private IDatabaseObject ReadDatabaseObject(string objectTypeName, IDatabaseObject parentObject = null)
-        {
-            if (null == _cfg)
-            {
-                throw new Exception("Configuration instance is not assigned!");
-            }
-
-            var databaseObject = new DatabaseObject {Type = objectTypeName,ParentObject = parentObject};
-            var dataDictionaryTablesString = _cfg.GetMandatoryConfigValue($"{objectTypeName}.DataDictionaryTables");
-            if (string.IsNullOrEmpty(dataDictionaryTablesString))
-            {
-                throw new Exception($"{objectTypeName}.DataDictionaryTables configuration parameter missed!");
-            }
-
-            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
             foreach (var dataDictionaryTable in dataDictionaryTables)
             {
-                var criteria = _cfg.GetConfigValue($"{objectTypeName}.{dataDictionaryTable}.Criteria");
-                databaseObject.Properties.Add(dataDictionaryTable,GetRecord(dataDictionaryTable,criteria));
+                if (dbObject.Properties.ContainsKey(dataDictionaryTable))
+                {
+                    continue;
+                }
+
+                var sqlCmd = _cfg.GetConfigValue($"{objectType}.{dataDictionaryTable}.SQL");
+                sqlCmd = ApplyContentToCriteria(dbObject, sqlCmd);
+
+                var propertiesDictionary = new Dictionary<string, object>();
+                using (var cmd = new OracleCommand())
+                {
+                    cmd.Connection = GetDbConnection();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sqlCmd;
+
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        for (var fieldIndex = 0; fieldIndex < reader.FieldCount; fieldIndex++)
+                        {
+                            propertiesDictionary.Add(reader.GetName(fieldIndex).ToLowerInvariant(), reader.GetValue(fieldIndex));
+                        }
+                    }
+                }
+
+                dbObject.Properties.Add(dataDictionaryTable.ToLowerInvariant(), propertiesDictionary);
             }
 
-            var childObjectTypeNamesString = _cfg.GetConfigValue($"{objectTypeName}.ChildObjectTypes");
-            if (string.IsNullOrEmpty(childObjectTypeNamesString))
-            {
-                return databaseObject;
-            }
-
-            var childObjectTypeNames = childObjectTypeNamesString.Split(",;".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
-            foreach (var childObjectTypeName in childObjectTypeNames)
-            {
-                databaseObject.ChildObjects.Add(ReadDatabaseObject(childObjectTypeName, databaseObject));
-            }
-
-            return databaseObject;
+            // ermitteln der child objects
+            LoadChildObjects(dbObject);
         }
 
-        private IDictionary<string, string> GetRecord(string dataDictionaryTable, string criteria)
+        private void LoadChildObjects(IDatabaseObject dbObject)
         {
-            var retVal = new Dictionary<string, string>();
-            using (var cmd = new OracleCommand())
+            if (null == dbObject)
             {
-                cmd.Connection = DbConnection as OracleConnection;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = string.IsNullOrEmpty(criteria)
-                    ? $"select * from {dataDictionaryTable}"
-                    : $"select * from {dataDictionaryTable} where {criteria}";
-
-                var reader = cmd.ExecuteReader();
-                if (!reader.Read())
-                {
-                    return retVal;
-                }
-
-                for (var fieldIndex = 0; fieldIndex < reader.FieldCount; fieldIndex++)
-                {
-                    retVal.Add(reader.GetName(fieldIndex),reader.GetString(fieldIndex));
-                }
+                return;
             }
 
-            return retVal;
+            var objectType = dbObject.Type;
+            var childObjectsString = _cfg.GetConfigValue($"{objectType}.ChildObjectTypes");
+            if (string.IsNullOrEmpty(childObjectsString))
+            {
+                return;
+            }
+
+            var childObjectTypes = childObjectsString.Split(",;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            foreach (var childObjectType in childObjectTypes)
+            {
+                var dataDictionaryTablesString = _cfg.GetMandatoryConfigValue($"{childObjectType}.DataDictionaryTables");
+                var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                var primaryDataDictionaryTable = dataDictionaryTables.First();
+
+                var sqlCmd = _cfg.GetConfigValue($"{childObjectType}.{primaryDataDictionaryTable}.SQL");
+                sqlCmd = ApplyContentToCriteria(dbObject, sqlCmd);
+
+                using (var cmd = new OracleCommand())
+                {
+                    cmd.Connection = GetDbConnection();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sqlCmd;
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var childObject = new DatabaseObject { Type = childObjectType, ParentObject = dbObject };
+                        var propertiesDictionary = new Dictionary<string, object>();
+
+                        for (var fieldIndex = 0; fieldIndex < reader.FieldCount; fieldIndex++)
+                        {
+                            propertiesDictionary.Add(reader.GetName(fieldIndex).ToLowerInvariant(), reader.GetValue(fieldIndex));
+                        }
+                        childObject.Properties.Add(primaryDataDictionaryTable.ToLowerInvariant(),propertiesDictionary);
+                        LoadObject(childObject);
+                        dbObject.ChildObjects.Add(childObject);
+                    }
+                }
+            }
         }
 
+        private static string ApplyContentToCriteria(IDatabaseObject databaseObject, string criteria)
+        {
+            var regex = new Regex("{[^{]*\\.[^{]*}");
+            var processedCriteria = criteria;
+
+            while (regex.IsMatch(processedCriteria))
+            {
+                var currentMatch = regex.Match(processedCriteria);
+                foreach (var capture in currentMatch.Captures)
+                {
+                    var replacementString = capture.ToString();
+                    replacementString = replacementString.Replace("{", string.Empty).Replace("}", string.Empty);
+                    var replacementStringParts = replacementString.Split(".".ToCharArray(),
+                        StringSplitOptions.RemoveEmptyEntries);
+
+                    var tableName = replacementStringParts.Length > 0 ? replacementStringParts[0] : string.Empty;
+                    if (string.IsNullOrEmpty(tableName))
+                    {
+                        continue;
+                    }
+
+                    var properties = databaseObject.Properties;
+                    while (null != properties)
+                    {
+                        if (properties.ContainsKey(tableName))
+                        {
+                            break;
+                        }
+                        properties = databaseObject.ParentObject?.Properties;
+                    }
+
+                    if (null == properties)
+                    {
+                        continue;
+                    }
+
+                    var fieldName = replacementStringParts.Length > 1 ? replacementStringParts[1] : string.Empty;
+                    if (string.IsNullOrEmpty(fieldName))
+                    {
+                        continue;
+                    }
+
+                    if (!properties[tableName].ContainsKey(fieldName))
+                    {
+                        continue;
+                    }
+
+                    var fieldValue = properties[tableName][fieldName].ToString();
+                    processedCriteria = processedCriteria.Replace(capture.ToString(), fieldValue);
+                }
+            }
+            return processedCriteria;
+        }
+
+        private OracleConnection _dbConnection;
+
+        private OracleConnection GetDbConnection()
+        {
+            if (null != _dbConnection)
+            {
+                return _dbConnection;
+            }
+
+            _dbConnection = new OracleConnection(_cfg.GetMandatoryConfigValue("ConnectionString"));
+            _dbConnection.Open();
+
+            return _dbConnection;
+        }
     }
 }
