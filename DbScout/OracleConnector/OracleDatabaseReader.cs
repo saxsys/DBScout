@@ -34,7 +34,7 @@ namespace OracleConnector
 
             var objectType = dbObject.Type;
             var dataDictionaryTablesString = _cfg.GetMandatoryConfigValue($"{objectType}.DataDictionaryTables");
-            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var dataDictionaryTables = dataDictionaryTablesString.Split(",;".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var dataDictionaryTable in dataDictionaryTables)
             {
@@ -58,7 +58,8 @@ namespace OracleConnector
                     {
                         for (var fieldIndex = 0; fieldIndex < reader.FieldCount; fieldIndex++)
                         {
-                            propertiesDictionary.Add(reader.GetName(fieldIndex).ToLowerInvariant(), reader.GetValue(fieldIndex));
+                            propertiesDictionary.Add(reader.GetName(fieldIndex).ToLowerInvariant(),
+                                reader.GetValue(fieldIndex));
                         }
                     }
                 }
@@ -66,8 +67,46 @@ namespace OracleConnector
                 dbObject.Properties.Add(dataDictionaryTable.ToLowerInvariant(), propertiesDictionary);
             }
 
+            AssignObjectName(dbObject);
+
             // ermitteln der child objects
             LoadChildObjects(dbObject);
+        }
+
+        private void AssignObjectName(IDatabaseObject dbObject)
+        {
+            if (!string.IsNullOrEmpty(dbObject.Name))
+            {
+                return;
+            }
+
+            var nameProperty = _cfg.GetConfigValue($"{dbObject.Type}.Name");
+            if (string.IsNullOrEmpty(nameProperty))
+            {
+                return;
+            }
+
+            nameProperty = nameProperty.Replace("{", string.Empty).Replace("}", string.Empty).ToLowerInvariant();
+            var namePropertyParts = nameProperty.Split(".".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var namePropertyTableName = namePropertyParts.Length > 0 ? namePropertyParts[0] : string.Empty;
+            var namePropertyColumnName = namePropertyParts.Length > 1 ? namePropertyParts[1] : string.Empty;
+
+            if (string.IsNullOrEmpty(namePropertyTableName) || string.IsNullOrEmpty(namePropertyColumnName))
+            {
+                return;
+            }
+
+            var properties = dbObject.Properties;
+            while (null != properties)
+            {
+                if (properties.ContainsKey(namePropertyTableName) &&
+                    properties[namePropertyTableName].ContainsKey(namePropertyColumnName))
+                {
+                    dbObject.Name = properties[namePropertyTableName][namePropertyColumnName].ToString();
+                    break;
+                }
+                properties = dbObject.ParentObject?.Properties;
+            }
         }
 
         private void LoadChildObjects(IDatabaseObject dbObject)

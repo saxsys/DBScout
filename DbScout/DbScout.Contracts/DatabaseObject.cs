@@ -33,5 +33,14 @@ namespace DbScout.Contracts
             get { return _properties ?? (_properties = new Dictionary<string, IDictionary<string, object>>()); }
             set { _properties = value; }
         }
+
+        public override string ToString()
+        {
+            return string.IsNullOrEmpty(Type)
+                ? base.ToString()
+                : string.IsNullOrEmpty(Name)
+                    ? Type
+                    : $"{Type} {Name}";
+        }
     }
 }
