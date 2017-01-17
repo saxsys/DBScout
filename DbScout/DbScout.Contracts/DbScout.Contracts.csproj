@@ -40,16 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsKeys.cs" />
-    <Compile Include="DatabaseObject.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="ICommandFactory.cs" />
-    <Compile Include="IConfigurable.cs" />
-    <Compile Include="IConfiguration.cs" />
-    <Compile Include="IDatabaseObject.cs" />
-    <Compile Include="IDatabaseReader.cs" />
-    <Compile Include="IOutputRenderer.cs" />
-    <Compile Include="OutputRenderEventArgs.cs" />
+    <Compile Include="IStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
