@@ -35,9 +35,10 @@ namespace DbScout.UnitTests
             var cmd3 = new CommandMock();
 
             // execution count == 0 for all commands
-            Assert.AreEqual(0, cmd1.ExecutionCount);
-            Assert.AreEqual(0, cmd2.ExecutionCount);
-            Assert.AreEqual(0, cmd3.ExecutionCount);
+            const int expectedExecutionCountBeforeRun = 0;
+            Assert.AreEqual(expectedExecutionCountBeforeRun, cmd1.ExecutionCount);
+            Assert.AreEqual(expectedExecutionCountBeforeRun, cmd2.ExecutionCount);
+            Assert.AreEqual(expectedExecutionCountBeforeRun, cmd3.ExecutionCount);
 
             // add all 3 mock command instances to strategy
             var sut = new Strategy();
@@ -49,9 +50,10 @@ namespace DbScout.UnitTests
             sut.Run();
 
             // each command is executed once:
-            Assert.AreEqual(1, cmd1.ExecutionCount);
-            Assert.AreEqual(1, cmd2.ExecutionCount);
-            Assert.AreEqual(1, cmd3.ExecutionCount);
+            const int expectedExecutionCountAfterRun = 1;
+            Assert.AreEqual(expectedExecutionCountAfterRun, cmd1.ExecutionCount);
+            Assert.AreEqual(expectedExecutionCountAfterRun, cmd2.ExecutionCount);
+            Assert.AreEqual(expectedExecutionCountAfterRun, cmd3.ExecutionCount);
         }
     }
 }
